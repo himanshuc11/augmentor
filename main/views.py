@@ -76,15 +76,11 @@ class LogoutAPIView(APIView):
         return Response('Logged Out')
 
 
-# class CRUDView(CreateAPIView, ListAPIView, RetrieveAPIView, DestroyAPIView, UpdateAPIView):
-#     queryset = ModelHolder.objects.all()
-#     serializer_class = ModelHolderSerializer
-
 class CRUDView(APIView):
-    # parser_classes = (FileUploadParser,)
-
     def get(self, request):
-        return Response('Use post to post data')
+        data = ModelHolder.objects.all()
+        serializer = ModelHolderSerializer(data, many=True)
+        return Response(serializer.data)
 
     def post(self, request):
         user_file = request.FILES['file']
