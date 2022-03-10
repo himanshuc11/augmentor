@@ -138,13 +138,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 
-# cloudinary.config(
-#     cloud_name="blankc",
-#     api_key="466946882844141",
-#     api_secret="B1CfGvlIMd8WS-wnwag_pkJpJfE",
-#     secure=True
-# )
-
 cloudinary.config(
     cloud_name="fyp22",
     api_key="945958851243524",
