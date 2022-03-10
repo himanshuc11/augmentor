@@ -84,5 +84,9 @@ class CRUDView(APIView):
 
     def post(self, request):
         user_file = request.FILES['file']
-        cloudinary.uploader.upload(user_file, resource_type="image")
-        return Response('OK')
+        url = cloudinary.uploader.upload(user_file, resource_type="image")
+        name = request.data['name']
+        model = ModelHolder(name=name, company=Company.objects.get(
+            company_name="root"), gltf_url=url['secure_url'])
+        model.save()
+        return Response(url['secure_url'])
