@@ -90,3 +90,10 @@ class CRUDView(APIView):
             company_name="root"), gltf_url=url['secure_url'])
         model.save()
         return Response(url['secure_url'])
+
+
+class CompanyView(APIView):
+    def get(self, request, company_name):
+        data = ModelHolder.objects.filter(name=company_name)
+        serializer = ModelHolderSerializer(data, many=True)
+        return Response(serializer.data)
