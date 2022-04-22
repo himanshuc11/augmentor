@@ -61,8 +61,7 @@ class LoginAPIView(APIView):
             token = Token.objects.get_or_create(
                 user=company)
             (tokenData, _) = token
-            print(vars(tokenData))
-            return Response({"token": tokenData.key})
+            return Response({"token": tokenData.key, "company_name": company.company_name})
         else:
             return Response('Please enter correct password')
 
