@@ -94,6 +94,6 @@ class CRUDView(APIView):
 
 class CompanyView(APIView):
     def get(self, request, company_name):
-        data = ModelHolder.objects.filter(name=company_name)
+        data = ModelHolder.objects.filter(company__company_name=company_name)
         serializer = ModelHolderSerializer(data, many=True)
         return Response(serializer.data)
